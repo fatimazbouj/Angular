@@ -10,7 +10,7 @@ Une application Angular peut être vue comme une arborescence de components avec
 ### Create project
 `ng new snapface`
 ### launch the app 
-cd angular-tour-of-heroes 
+cd snapface
 ng serve --open
 ### Create component
 ng generate component face-snap
