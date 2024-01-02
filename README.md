@@ -10,13 +10,15 @@ Une application Angular peut être vue comme une arborescence de components avec
 ### Create project
 `ng new snapface`
 ### launch the app 
+```
 cd snapface
 ng serve --open
+```
 ### Create component
-ng generate component face-snap
+`ng generate component face-snap`
 
 Cette classe est déclarée avec un décorateur  `@Component`  à qui on passe un objet de configuration avec un sélecteur, un fichier de template et un fichier de styles.
-Un décorateur en TypeScript permet, entre autres, d'apporter des modifications à une classe. Ici, le décorateur  @Component  vient ajouter tous les comportements nécessaires à l'utilisation de ce component dans l'application. Il est importé depuis le package  `@angular/core`. Tout se passe sous le capot, on n'a pas à s'en occuper !
+Un décorateur en TypeScript permet, entre autres, d'apporter des modifications à une classe. Ici, le décorateur  `@Component`  vient ajouter tous les comportements nécessaires à l'utilisation de ce component dans l'application. Il est importé depuis le package  `@angular/core`. Tout se passe sous le capot, on n'a pas à s'en occuper !
 Pour le template et les styles, c'est plutôt simple : on dit à Angular quels fichiers utiliser pour afficher notre component. Le sélecteur (avec le préfixe  app-  par défaut), c'est ce qui va nous permettre d'insérer ce component dans notre application.
 Comme vous le savez, votre application est une arborescence de components avec AppComponent comme racine : c'est donc dans  app.component.html  qu'on va venir ajouter le sélecteur de notre nouveau component comme balise HTML :
 
@@ -32,31 +34,31 @@ L'objectif de l'application Snapface est de partager des images. Il nous faut do
 
 
 ## En résumé
-*	On déclare les propriétés d'un component en haut de sa classe, et on les initialise dans la méthode  ngOnInit()
-*	La méthode  ngOnInit()  est appelée une fois par instance de component au moment de la création de cette instance.
-*	La string interpolation avec les doubles accolades  {{ }}  permet d'insérer la valeur d'une propriété TypeScript dans le template.
-*	L'attribute binding permet de lier la valeur d'une propriété TypeScript à un attribut HTML, en mettant l'attribut entre crochets  []  et en passant le nom de la propriété.
+*	On déclare les propriétés d'un component en haut de sa classe, et on les initialise dans la méthode  `ngOnInit()`
+*	La méthode  `ngOnInit()`  est appelée une fois par instance de component au moment de la création de cette instance.
+*	La string interpolation avec les doubles accolades  `{{ }}`  permet d'insérer la valeur d'une propriété TypeScript dans le template.
+*	L'attribute binding permet de lier la valeur d'une propriété TypeScript à un attribut HTML, en mettant l'attribut entre crochets  `[]`  et en passant le nom de la propriété.
 
 
-Il faut maintenant lier cette méthode au clic sur le bouton avec la liaison par événement, ou event binding. Là où vous avez utilisé des crochets pour lier aux attributs, vous allez utiliser des parenthèses  ()  pour lier aux événements :
+Il faut maintenant lier cette méthode au clic sur le bouton avec la liaison par événement, ou event binding. Là où vous avez utilisé des crochets pour lier aux attributs, vous allez utiliser des parenthèses  `()`  pour lier aux événements :
 `<button (click)="onAddSnap()">Oh Snap!</button>`
  On utilise bien  `(click)`  et non  `(onclick)`  car on veut réagir à l'événement qui s'appelle "click" !
 
-*	Pour lier une méthode à un événement d'un élément du template, mettez l'événement entre parenthèses  ()  et passez la méthode en argument ; ex. : `(click)="onClickButton()`"
+*	Pour lier une méthode à un événement d'un élément du template, mettez l'événement entre parenthèses ` ()`  et passez la méthode en argument ; ex. : `(click)="onClickButton()`"
 
 Si vous avez des propriétés qui seront initialisées par les arguments passés au constructor comme ci-dessus, vous pouvez retirer leurs déclarations et initialisations, et leur ajouter simplement le modificateur  public  dans le  constructor  :
 
 
 Vous allez maintenant utiliser l'attribute binding pour lier cet objet à la propriété personnalisée  faceSnap  de FaceSnapComponent dans  app.component.html  :
 `<app-face-snap [faceSnap]="mySnap"></app-face-snap>`
-@Input()  crée comme un attribut HTML auquel on peut lier une valeur, tout comme vous l'avez fait avec l'attribut  src  de l'élément image !
+`@Input()`  crée comme un attribut HTML auquel on peut lier une valeur, tout comme vous l'avez fait avec l'attribut  src  de l'élément image !
 
 
 ## En résumé
 *	N'hésitez pas à créer vos propres types, sous forme de classe par exemple, pour faciliter la manipulation de données dans votre application.
 *	Une propriété personnalisée est rendue injectable depuis l'extérieur grâce au décorateur  `@Input()`
 *	Une propriété en  `@Input()` est utilisable comme n'importe quelle autre propriété : on peut en afficher les éléments, les modifier… 
-*	On lie ensuite une valeur à cette propriété depuis le component parent avec l'attribute binding, c'est-à-dire le nom de la propriété entre crochets  []  en passant la valeur entre les guillemets ; ex. : `[faceSnap]="mySnap"`
+*	On lie ensuite une valeur à cette propriété depuis le component parent avec l'attribute binding, c'est-à-dire le nom de la propriété entre crochets  `[]`  en passant la valeur entre les guillemets ; ex. : `[faceSnap]="mySnap"`
 
 Mettez en place une structure dynamique
 Dans une application moderne, il y aura des occasions où dans certains cas, vous voudrez afficher un élément, et dans d'autres non. Par le passé, on a utilisé plein de techniques pour atteindre cet objectif. Avec Angular, c'est extrêmement simple avec la directive*ngIf.
@@ -144,10 +146,7 @@ providers: [
 *	DatePipe permet de formater les dates, et sans configuration fournit un formatage par défaut.
 *	DatePipe fournit des configurations prédéfinies avec des noms comme  short,  longDate  ou  mediumTime
 *	DatePipe permet également de personnaliser totalement le format d'affichage des dates avec des chaînes de caractères qui encodent le format souhaité, par exemple  `'à HH:mm, le d MMMM yyyy'`
- Continuons dans la découverte des pipes avec un pipe qui vous permettra de formater les
-
-
-Dans le cadre de ce cours, je voudrais partager avec vous une dernière catégorie de pipes : ceux qui concernent le formatage des nombres selon les règles de locale de l'application. Il y en a trois :
+ Continuons dans la découverte des pipes avec un pipe qui vous permettra de formater des nombres selon les règles de locale de l'application. Il y en a trois :
 *	DecimalPipe – facilite l'affichage de nombres avec des chiffres après la virgule (qui met une virgule plutôt qu'un point, par exemple).
 *	PercentPipe – formate les chiffres en pourcentage.
 *	CurrencyPipe – permet d'afficher des nombres sous forme de monnaie très facilement.
@@ -220,7 +219,7 @@ Et votre application refonctionne, sauf que maintenant elle utilise les données
 *	Pour injecter un service dans un component, ajoutez un argument au constructor du component qui a le type du service, par exemple private userService: UserService
 ```
 snapFaceSnapById(faceSnapId: number, snapType: string): void {
-    const faceSnap = this.getFaceSnapById(faceSnapId);<
+    const faceSnap = this.getFaceSnapById(faceSnapId);
     snapType === 'snap' ? faceSnap.snaps++ : faceSnap.snaps--;
 }
 ```
